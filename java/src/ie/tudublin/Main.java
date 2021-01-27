@@ -25,6 +25,14 @@ public class Main
         // 1. topcat, Garfield
         // 2. garfield, Garfield 
 
+        Cat ginger = new Cat("Ginger");
+        for(int i=0; i < 10; i++ )
+        {
+            System.out.println(ginger.getNumLives());
+            ginger.kill();
+            //System.out.println(((Cat)a).getNumLives());
+        }
+
 
     }
 } 
