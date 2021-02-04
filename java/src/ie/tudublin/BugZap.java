@@ -19,7 +19,8 @@ public class BugZap extends PApplet {
 	float bugX, bugY, bugWidth = 30;
 	float halfBugWidth = bugWidth / 2;
 
-	int score = 0;
+    int score = 0;
+    boolean isOver= false;
 
 	void reset() {
 		resetBug();
@@ -98,25 +99,39 @@ public class BugZap extends PApplet {
 	}
 
 	void moveBug() {
-		if ((frameCount % 30) == 0) {
-			bugX += random(-5, 5);
-			if (bugX < halfBugWidth) {
-				bugX = halfBugWidth;
-			}
-			if (bugX > width - halfBugWidth) {
-				bugX = width - halfBugWidth;
-			}
-			bugY += 2;
-		}
-	}
+        if(bugY > playerY){
+           isOver = true;
+        }
+        else{
+            if ((frameCount % 30) == 0) {
+                bugX += random(-5, 5);
+                if (bugX < halfBugWidth) {
+                    bugX = halfBugWidth;
+                }
+                if (bugX > width - halfBugWidth) {
+                    bugX = width - halfBugWidth;
+                }
+                bugY += 2;
+            }
+        }	
+    }
+    
+    public void gameOver(){
+        text("Game Over",400, 400);
+    }
+
 
 	public void draw() {
-		background(0);
-		fill(255);
-		drawPlayer(playerX, playerY, playerWidth);
-		drawBug(bugX, bugY);
-		moveBug();
-
-		text("Score: " + score, 20, 20);
+        if(isOver){
+            gameOver();
+        }else{
+            background(0);
+            fill(255);
+            drawPlayer(playerX, playerY, playerWidth);
+            drawBug(bugX, bugY);
+            moveBug();
+    
+            text("Score: " + score, 20, 20);
+        }
 	}
 }
