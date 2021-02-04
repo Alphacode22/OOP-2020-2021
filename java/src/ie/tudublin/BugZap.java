@@ -47,11 +47,17 @@ public class BugZap extends PApplet {
         fill(0, 255, 0);
         ellipse(x, y, 50, 50);
 
+        moveBug();
+    }
+
+    void moveBug(){
         if ((frameCount % 60) == 0)
         {
          
             bugX += Math.random() * 5;
             bugY += Math.random() * 5;
+            //random()
+            //width-jalfBugWidth
             // Do something
             if ((frameCount % 120) == 0)
             {
