@@ -28,6 +28,7 @@ public class Loops extends PApplet {
 
     public void draw() {
         background(0);
+        noStroke();
         switch (mode)
         {
             // case 0:
