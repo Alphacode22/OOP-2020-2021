@@ -29,25 +29,62 @@ public class Loops extends PApplet {
     public void draw() {
         background(0);
         noStroke();
+     
         switch (mode)
         {
-            // case 0:
-            //     ellipse(cx, cy, 100, 100);
-            //     break;
              case 0:
-             {
-                ellipse(cx, cy, 100, 100);
-             }
-             break;
-            //  case 3:
-            //  {
-            //      int numCircles = (int)(mouseX / 10.0f);
-            //      float w = width / (float) numCircles;
-            //      float cgap = 255 / (float) numCircles;
-            //      for(int i=0; i <numCircles; i++){
-                     
-            //      }
-            //  }
+                //ellipse(cx, cy, 100, 100);
+                fill(50, 255, 255);
+                
+                //https://processing.org/reference/rect_.html
+                //rect(cx, cy, 250, 250);
+                if(mouseX < cx){
+                    rect(0, 0, cx, height);
+                }else{
+                    rect(cx, 0, cx, height);
+                }
+             
+                break;
+             case 2:
+                if(mouseX < cx && mouseY < cy){
+                    rect(0, 0, cx, cy);
+                } else if(mouseX > cx && mouseY < cy){
+                    rect(cx, 0, cx, cy);
+                } else if(mouseX < cx && mouseY > cy){
+                    rect(0, cy, cx, cy);
+                } else {
+                    rect(cx, cy, cx, cx);
+                }
+                break;
+            case 3:
+            {
+                int numRects = (int)(mouseX/ 10.0f);
+                float w = width / (float) numRects;
+                float cgap = 255 / (float) numRects;
+                for(int i=0; i < numRects; i++ ){
+                    //Please Look Over
+                    fill(i * cgap, 255, 255);//cgap
+                    //Please Look Over
+                    rect(i * w, 0, w, height);
+                }   
+                break;
+            }
+            case 4:
+            {
+                int numCircles = (int)(mouseX / 60.0f);
+                float w = width / (float) numCircles;
+                float cgap = 255 / (float) numCircles;
+                for(int i=0; i <numCircles; i++){
+                    fill(i * cgap, 255, 255);
+                   // ellipse(i* w, 0, w, cy);
+                    ellipse(w /2 + ( i * w), cy, w, w);
+                    // ellipse(w /2 + ( i * w), cy, w, w);
+                    // ellipse(w /2 + ( i * w), cy, w, w);
+                    // ellipse(w /2 + ( i * w), cy, w, w);
+                }
+                    
+                break;
+            }
             
         }
     }
