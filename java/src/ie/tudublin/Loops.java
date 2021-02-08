@@ -30,9 +30,24 @@ public class Loops extends PApplet {
         background(0);
         switch (mode)
         {
-            case 0:
+            // case 0:
+            //     ellipse(cx, cy, 100, 100);
+            //     break;
+             case 0:
+             {
                 ellipse(cx, cy, 100, 100);
-                break;
+             }
+             break;
+            //  case 3:
+            //  {
+            //      int numCircles = (int)(mouseX / 10.0f);
+            //      float w = width / (float) numCircles;
+            //      float cgap = 255 / (float) numCircles;
+            //      for(int i=0; i <numCircles; i++){
+                     
+            //      }
+            //  }
+            
         }
     }
 }
