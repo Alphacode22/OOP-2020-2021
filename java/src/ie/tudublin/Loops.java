@@ -45,7 +45,7 @@ public class Loops extends PApplet {
                 }
              
                 break;
-             case 2:
+             case 1:
                 if(mouseX < cx && mouseY < cy){
                     rect(0, 0, cx, cy);
                 } else if(mouseX > cx && mouseY < cy){
@@ -56,9 +56,9 @@ public class Loops extends PApplet {
                     rect(cx, cy, cx, cx);
                 }
                 break;
-            case 3:
+            case 2:
             {
-                int numRects = (int)(mouseX/ 10.0f);
+                int numRects = (int)(mouseX/ 10.0f);//Affects num of rects
                 float w = width / (float) numRects;
                 float cgap = 255 / (float) numRects;
                 for(int i=0; i < numRects; i++ ){
@@ -69,7 +69,7 @@ public class Loops extends PApplet {
                 }   
                 break;
             }
-            case 4:
+            case 3:
             {
                 int numCircles = (int)(mouseX / 60.0f);
                 float w = width / (float) numCircles;
@@ -85,7 +85,108 @@ public class Loops extends PApplet {
                     
                 break;
             }
-            
+            //Order Broken
+            //Line diagonal
+            case 4:
+            {
+                // int numSquares = (int)(mouseX / 60.0f);
+                // float w = width / (float) numSquares;
+                // float cgap = 255 / (float) numSquares;
+                // for(int i=0; i <numSquares; i++){
+                //     fill(i * cgap, 255, 255);
+                //     rect(w, w, w, w);
+                // }
+                rectMode(CORNER);
+                int numSquares = (int)(mouseX / 10.0f);
+                float w = width / (float) numSquares;
+                float cgap = 255 / (float) numSquares;
+                for(int i=0; i <numSquares; i++){
+                    fill(i * cgap, 255, 255);
+                    rect(i * w, i * w, w, w);
+                }
+                break;
+            }
+            case 5:
+            {
+                rectMode(CORNER);
+                int numSquares = (int)(mouseX / 10.0f);
+                float w = width / (float) numSquares;
+                float cgap = 255 / (float) numSquares;
+                int j=numSquares;
+                for(int i=0; i <numSquares; i++){
+                    fill(i * cgap, 255, 255);
+                    rect(i * w, i * w, w, w);
+                    j--;
+                    rect(j * w, i * w, w, w);
+                }
+                break;
+            }
+            case 6://Circle coming concentric
+            {
+                int numCircles = (int)(mouseX / 60.0f);//special num for circle
+                int w=100;
+                float cgap = 255 / (float) numCircles;
+                for(int i=numCircles; i >0; i--){
+                    fill(i * cgap, 255, 255);
+                    ellipse(cx, cy, i*w , i*w);
+                    w++;
+                }
+                break;
+            }
+            case 7://Circle in a square
+            {
+                int numCircles = (int)(mouseX / 30.0f);
+                float w = width / (float) numCircles;
+                float cgap = 255 / (float) numCircles;
+               
+                for(int i=0; i <numCircles; i++){
+                    fill(i * cgap , 255, 255);
+                    for(int j=0; j<numCircles; j++){
+                        // float saturation = 255/i;
+                        // float brightness = 255/j;
+                      //100??? Max value
+                       // fill(j * cgap , 255, 255);
+                        ellipse(w /2 + ( i * w), w /2 + ( j * w), w, w);
+                    }
+                }
+                break;
+            }
+            case 8:
+            {
+                
+                break;
+            }
+            // case 9:
+            // {
+                
+            //     break;
+            // }
+            // case 9:
+            // {
+            //     int numLines =5;
+            //     float theta = TWO_PI / (float) numLines;
+            //     float radius = 100;
+            //     for(int i=0; i < numLines; i++){
+            //         float angle = theta * i;
+            //         float x = sin(angle) * radius;
+            //         float y = cos(angle) * radius;
+            //         line(cx, cy, cx+ x, cy+ y);
+            //     }
+            //     break;
+            // }
+            case 9:
+            {
+                int numLines =5;
+                float theta = TWO_PI / (float) numLines;
+                float radius = 100;
+                for(int i=0; i < numLines; i++){
+                    float angle = theta * i;
+                    float x = sin(angle) * radius;
+                    float y = cos(angle) * radius;
+                    line(cx, cy, cx+ x, cy+ y);
+                }
+                break;
+            }
         }
     }
 }
