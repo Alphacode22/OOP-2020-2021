@@ -56,9 +56,15 @@ public class Main
         String[] a = {"MAIN"};
         processing.core.PApplet.runSketch( a, new Loops());
     }
+
+    public void snakeGame(){
+        String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new SnakeGame());
+    }
+
     public static void main(String[] args)
     {
         Main main = new Main();
-        main.loops();
+        main.snakeGame();
     }
 } 
