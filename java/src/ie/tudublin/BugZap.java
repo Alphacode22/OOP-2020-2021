@@ -8,17 +8,17 @@ import processing.core.PApplet;
 public class BugZap extends PApplet {
     private float playerX=250;
     private float playerY=450;
-    private float playerWidth=50;
+    private float playerWidth=40;
 
     private float bugX=10;
     private float bugY=10;
     private float bugWidth=50;
+    float halfPlayerWidth = playerWidth / 2;
 
     private boolean isShooting=false;
     private int frameShoot=0;
 
     private int score=0;
-
 
     //Start
     public void settings(){
@@ -26,79 +26,51 @@ public class BugZap extends PApplet {
     }
     
     public void setup(){
-        //width = 500;
-        //height =500;
-        
+        //colorMode(HSB);
+        //Changes background of screen to black
+        //background(255);
     }
 
     void drawPlayer(float x, float y, float w){
-        // x + 20, w * 0.5f
-        //line(x, y, 50, 50);
-        background(0);//Changes background of screen to black
-
-        noStroke();
-        fill(0, 0, 255);
-        ellipse(x, y, 50, 50);
+        fill(50, 92, 10);
+        rect(x, y, 30, w);
     }
     
     
     void drawBug(float x, float y, float w){
-        // x + 20, w * 0.5f
-        //line(x, y, 50, 50);
-        //background(0);//Changes background of screen to black
-
-        noStroke();
+        stroke(255);
         fill(0, 255, 0);
         ellipse(x, y, 50, 50);
-
-        //hitBug();
     }
 
     void moveBug(){
-        if ((frameCount % 60) == 0)
-        {
-         
+        if ((frameCount % 60) == 0){
             bugX += Math.random() * 5;
             bugY += Math.random() * 5;
-            //random()
-            //width-jalfBugWidth
-            // Do something
-            // if ((frameCount % 120) == 0)
-            // {
-            //     System.out.println("Eat Human");
-            // }
         }
     }
     
     //Run every second, 60 frames per second
     public void draw(){
+        background(255);
+        //fill(0, 255, 0);
         drawPlayer(playerX, playerY, playerWidth);
         shoot();
         drawBug(bugX, bugY, bugWidth);
         moveBug();
+      
 
         text("Score: " + score, 20, 20);
-
-     
-        //keyPressed();
     }
 
-    public void keyPressed()
-	{
-		if (keyCode == LEFT )
-		{
-            //System.out.println("Left arrow pressed");
+    public void keyPressed(){
+		if (keyCode == LEFT ) {
             if(!(playerX > 450))
                 playerX -=10;
-		}
-		if (keyCode == RIGHT)
-		{
-           // System.out.println("Right arrow pressed");
+		} if (keyCode == RIGHT) {
             if(!(playerX < 0))
                 playerX +=10;
-		}
-		if (key == ' ')
-		{
+		} if (keyCode == ' ') {
             //System.out.println("SPACE key pressed");
             isShooting = true;
             frameShoot= frameCount;
@@ -111,31 +83,22 @@ public class BugZap extends PApplet {
 	}
 
     public void shoot(){
-        //fill(0, 0, 255); 
-
-        //strokeWeight(1);
         if(isShooting){
             if(playerX > bugX && playerY < bugY){
                 System.out.println("Score");
-                line(playerX, playerY, playerX, bugY);
+                line(halfPlayerWidth, playerY, halfPlayerWidth, bugY);
 				score ++;
                 resetBug();
             }else {
-                if(frameCount < frameShoot+30)
-                {
-                    //System.out.println("BANG BANG!!!");
+                if(frameCount < frameShoot+30){
                     stroke(0, 255, 255);
                     strokeWeight(1);
-                    line(playerX, playerY, playerX, playerY-500);
-                }
-                else {
+                    line(playerX + halfPlayerWidth, playerY, playerX +halfPlayerWidth, playerY-500);
+                } else {
                     isShooting = false;
                 }
             }
         }
-    }
-
-
-    
+    }   
 }
 
