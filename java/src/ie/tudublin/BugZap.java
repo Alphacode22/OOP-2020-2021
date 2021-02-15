@@ -16,6 +16,9 @@ public class BugZap extends PApplet {
     private boolean isShooting=false;
     private int frameShoot=0;
 
+    private int score=0;
+
+
     //Start
     public void settings(){
         size(500, 500);//px
@@ -48,6 +51,7 @@ public class BugZap extends PApplet {
         ellipse(x, y, 50, 50);
 
         moveBug();
+        //hitBug();
     }
 
     void moveBug(){
@@ -97,24 +101,34 @@ public class BugZap extends PApplet {
 		}
     }
 
+    void resetBug() {
+        bugX = random(bugWidth, width- bugWidth );
+		bugY = 50;
+	}
+
     public void shoot(){
         //fill(0, 0, 255); 
 
         //strokeWeight(1);
         if(isShooting){
-            if(frameCount < frameShoot+30)
-            {
-                System.out.println("BANG BANG!!!");
-                stroke(0, 255, 255);
-                strokeWeight(1);
-                line(playerX, playerY, playerX, playerY-500);
-            }
-            else {
-                isShooting = false;
+            if(playerX > bugX && playerY < bugY){
+                resetBug();
+            }else {
+                if(frameCount < frameShoot+30)
+                {
+                    System.out.println("BANG BANG!!!");
+                    stroke(0, 255, 255);
+                    strokeWeight(1);
+                    line(playerX, playerY, playerX, playerY-500);
+                }
+                else {
+                    isShooting = false;
+                }
             }
         }
-       
     }
+
+
     
 }
 
