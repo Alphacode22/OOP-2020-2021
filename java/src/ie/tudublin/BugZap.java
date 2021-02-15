@@ -98,7 +98,8 @@ public class BugZap extends PApplet {
 	}
 
 	void moveBug() {
-		if ((frameCount % 1) == 0) {
+		//if ((frameCount % 1) == 0) {
+        if ((frameCount % 5) == 0) {
 			bugX += random(-5, 5);
 			if (bugX < halfBugWidth) {
 				bugX = halfBugWidth;
@@ -119,6 +120,7 @@ public class BugZap extends PApplet {
 			fill(255);
 			drawPlayer(playerX, playerY, playerWidth);
 			drawBug(bugX, bugY);
+            //drawBug(bugX+100, bugY);
 			moveBug();
 
 			text("Score: " + score, 20, 20);
