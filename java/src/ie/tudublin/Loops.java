@@ -160,7 +160,7 @@ public class Loops extends PApplet {
                 stroke(255);
                 for(int i = 1 ; i <= sides ; i ++)
                 {
-                    float x1 = sin(theta * (i - 1)) * radius;
+                    float x1 = sin(theta * (i - 1)) * radius;//two
                     float y1 = cos(theta * (i - 1)) * radius;
                     float x2 = sin(theta * i) * radius;
                     float y2 = cos(theta * i) * radius;
