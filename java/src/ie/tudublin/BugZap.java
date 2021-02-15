@@ -1,6 +1,7 @@
 package ie.tudublin;
 
 import java.util.Random;
+import java.util.concurrent.locks.LockSupport;
 
 import processing.core.PApplet;
 
@@ -50,7 +51,6 @@ public class BugZap extends PApplet {
         fill(0, 255, 0);
         ellipse(x, y, 50, 50);
 
-        moveBug();
         //hitBug();
     }
 
@@ -63,10 +63,10 @@ public class BugZap extends PApplet {
             //random()
             //width-jalfBugWidth
             // Do something
-            if ((frameCount % 120) == 0)
-            {
-                System.out.println("Eat Human");
-            }
+            // if ((frameCount % 120) == 0)
+            // {
+            //     System.out.println("Eat Human");
+            // }
         }
     }
     
@@ -75,6 +75,10 @@ public class BugZap extends PApplet {
         drawPlayer(playerX, playerY, playerWidth);
         shoot();
         drawBug(bugX, bugY, bugWidth);
+        moveBug();
+
+        text("Score: " + score, 20, 20);
+
      
         //keyPressed();
     }
@@ -83,19 +87,19 @@ public class BugZap extends PApplet {
 	{
 		if (keyCode == LEFT )
 		{
-            System.out.println("Left arrow pressed");
+            //System.out.println("Left arrow pressed");
             if(!(playerX > 450))
                 playerX -=10;
 		}
 		if (keyCode == RIGHT)
 		{
-            System.out.println("Right arrow pressed");
+           // System.out.println("Right arrow pressed");
             if(!(playerX < 0))
                 playerX +=10;
 		}
 		if (key == ' ')
 		{
-            System.out.println("SPACE key pressed");
+            //System.out.println("SPACE key pressed");
             isShooting = true;
             frameShoot= frameCount;
 		}
@@ -112,11 +116,14 @@ public class BugZap extends PApplet {
         //strokeWeight(1);
         if(isShooting){
             if(playerX > bugX && playerY < bugY){
+                System.out.println("Score");
+                line(playerX, playerY, playerX, bugY);
+				score ++;
                 resetBug();
             }else {
                 if(frameCount < frameShoot+30)
                 {
-                    System.out.println("BANG BANG!!!");
+                    //System.out.println("BANG BANG!!!");
                     stroke(0, 255, 255);
                     strokeWeight(1);
                     line(playerX, playerY, playerX, playerY-500);
