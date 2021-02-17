@@ -70,13 +70,21 @@ public class Loops extends PApplet {
                 break;
             case 2:
             {
+                // int numRects = (int)(mouseX / 10.0f);
+                // float w = width / (float) numRects;
+                // float cgap = 255 / (float) numRects;
+                // for(int i = 0 ; i < numRects ; i ++)
+                // {
+                //     fill(i * cgap, 255, 255);
+                //     rect(i * w, 0, w, height);
+                // }
+                // break;
                 int numRects = (int)(mouseX / 10.0f);
                 float w = width / (float) numRects;
-                float cgap = 255 / (float) numRects;
-                for(int i = 0 ; i < numRects ; i ++)
-                {
+                float cgap = 255/ (float) numRects;
+                for(int i=0; i < numRects; i++){
                     fill(i * cgap, 255, 255);
-                    rect(i * w, 0, w, height);
+                    rect(i * w, 0, w , height);
                 }
                 break;
             }
@@ -93,16 +101,25 @@ public class Loops extends PApplet {
                 break;
             }
             case 4:
-            {
-                int numLines = 5;
+            {   //NOT WORKING
+                // int numLines = 5;
+                // float theta = TWO_PI / (float) numLines;
+                // float radius = 100;
+                // for(int i = 0 ; i < numLines ; i ++)
+                // {
+                //     float angle = theta * i;
+                //     float x = sin(angle) * radius;
+                //     float y = cos(angle) * radius;
+                //     line(cx, cy, cx + x, cy + y);                    
+                // }
+                int numLines =5;
                 float theta = TWO_PI / (float) numLines;
                 float radius = 100;
-                for(int i = 0 ; i < numLines ; i ++)
-                {
+                for(int i =0; i < numLines; i++){
                     float angle = theta * i;
-                    float x = sin(angle) * radius;
-                    float y = cos(angle) * radius;
-                    line(cx, cy, cx + x, cy + y);                    
+                    float x = sin(angle) *radius;
+                    float y = cos(angle) *radius;
+                    line(cx, cy, cx + x, cy + cy);
                 }
             }
             break;
@@ -137,20 +154,30 @@ public class Loops extends PApplet {
             }
             case 7:
             {
-                offset += (mouseX / 100);
+                // offset += (mouseX / 100);
+                // int numCircles = 20;
+                // float w = width / (float)numCircles;
+                // float cgap = 255 / (numCircles + numCircles);
+                // for(int i = 0 ; i < numCircles ; i ++)
+                // {
+                //     for(int j = 0 ; j < numCircles ; j ++)
+                //     {
+                //         float c = ((cgap * (i + j)) + offset) % 255; 
+                //         fill(c, 255, 255);
+                //         ellipse((w / 2) + w * j, (w / 2) + w * i, w, w);
+                //     }
+                // }
+                // break;//
                 int numCircles = 20;
                 float w = width / (float)numCircles;
-                float cgap = 255 / (numCircles + numCircles);
-                for(int i = 0 ; i < numCircles ; i ++)
-                {
-                    for(int j = 0 ; j < numCircles ; j ++)
-                    {
-                        float c = ((cgap * (i + j)) + offset) % 255; 
+                float cgap = 255 /(numCircles + numCircles);//Weired colour
+                for(int i=0 ; i < numCircles; i++){
+                    for(int j=0; j < numCircles; j++){
+                        float c = ((cgap * (i+j)));
                         fill(c, 255, 255);
-                        ellipse((w / 2) + w * j, (w / 2) + w * i, w, w);
+                        ellipse((w /2) + w * j, (w/ 2) + w *i, w, w);
                     }
                 }
-                break;//
             }
             case 8:
             {
