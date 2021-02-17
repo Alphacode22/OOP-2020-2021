@@ -69,7 +69,7 @@ public class Arrays extends PApplet {
     }
 
     public void setup() {
-        colorMode(RGB);
+        //colorMode(RGB);
 
         // Iterating over an array in Java
         for (int i = 0; i < rainfall.length; i++) {
@@ -110,14 +110,14 @@ public class Arrays extends PApplet {
         // Draw a bar chart of the rainfall!!
         // Use the map function
 
-        colorMode(HSB);
-        float w = width / (float) rainfall.length;
-        for (int i = 0; i < rainfall.length; i++) {
-            noStroke();
-            fill(random(255), 255, 255);
-            float x = map(i, 0, rainfall.length, 0, width);
-            rect(x, height, w, -rainfall[i]);
-        }
+        // colorMode(HSB);
+        // float w = width / (float) rainfall.length;
+        // for (int i = 0; i < rainfall.length; i++) {
+        //     noStroke();
+        //     fill(random(255), 255, 255);
+        //     float x = map(i, 0, rainfall.length, 0, width);
+        //     rect(x, height, w, -rainfall[i]);
+        // }
     }
 
 
@@ -126,6 +126,37 @@ public class Arrays extends PApplet {
         switch (mode) {
             case 0: {
                 // Bar chart
+                colorMode(HSB);
+                float w = width / (float) rainfall.length;
+                float offset = 30;
+
+                //float cgap = width/ (float) rainfall.length;
+                for (int i = 0; i < rainfall.length; i++) {
+                    //float cgap = 255/(i+1);
+                    stroke(255);
+                    float c = map(i, 0, rainfall.length, 0, 255);
+                    fill(c, 255, 255);
+                    float x = map(i, 0, rainfall.length, 0, width);
+                    rect(x+offset, height-offset, w, ((-rainfall[i])));
+                    //height?
+                }
+
+                for (int i=0; i <= 120; i+=10){
+                    line(offset, height-offset, 30, 30);
+                    float y = map(i, 0, 0, 120, 0 );
+                    text(i , 0, height-((i+1)* offset));
+                    
+                    text("-", 30, height-((i+1)* offset));
+                    //text(i * 10, width/2 + (i*20), height/2 + (i*20));
+                }
+
+                for (int i=0; i < months.length; i++){
+                    float x = map(i, 0, months.length, 0, width);
+                    text(months[i], x+offset, height);
+                    //text(i * 10, width/2 + (i*20), height/2 + (i*20));
+                }
+
+
                 break;
             }
             case 1: {
