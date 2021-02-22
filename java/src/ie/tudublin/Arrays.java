@@ -4,14 +4,41 @@ import processing.core.PApplet;
 
 public class Arrays extends PApplet {
 
-    // This is how the map function works!
+    //This is how the map function works!
     public float map1(float from, float start1, float stop1, float start2, float stop2) {
-        float range1 = stop1 - start1;
-        float range2 = stop2 - start2;
-        float howFar = from - start1;
-
-        return start2 + (howFar / range1) * range2;
+        float range1 = stop1 - start1;//10
+        float range2 = stop2 - start2;//500
+        float howFar = from - start1;//-8
+        return start2 + (howFar / range1) * range2;//here
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // //This is how the map function works!
+    // public float map1(float from, float start1, float stop1, float start2, float stop2) {
+    //     float range1 = stop1 - start1;
+    //     float range2 = stop2 - start2;
+    //     float currentNum = from - range1;
+    //     //return from+ range1 
+    // }
+
+
+
+
+
+
 
     // This is a demo of the map function
     public void drawGrid() {
@@ -123,12 +150,13 @@ public class Arrays extends PApplet {
 
     public void draw() {
         background(0);
+        float offset = 30;
         switch (mode) {
             case 0: {
                 // Bar chart
                 colorMode(HSB);
                 float w = width / (float) rainfall.length;
-                float offset = 30;
+                
 
                 //float cgap = width/ (float) rainfall.length;
                 for (int i = 0; i < rainfall.length; i++) {
@@ -143,7 +171,7 @@ public class Arrays extends PApplet {
 
                 for (int i=0; i <= 120; i+=10){
                     line(offset, height-offset, 30, 30);
-                    float y = map(i, 0, 0, 120, 0 );
+                    float y = map(i, 0, 0, 0, 120);
                     text(i , 0, height-((i+1)* offset));
                     
                     text("-", 30, height-((i+1)* offset));
@@ -161,6 +189,11 @@ public class Arrays extends PApplet {
             }
             case 1: {
                 // Trend line
+                
+                float w = (width -(offset*2))/ rainfall.length;
+                for(float i=0; i < rainfall.length; i++){
+                    line(w * i + (width - (offset *2)), i + (height - (offset *2), x2, y2);)
+                }
             }
             case 2: {
                 // Pie chart

@@ -62,9 +62,16 @@ public class Main
         String[] a = {"MAIN"};
         processing.core.PApplet.runSketch( a, new Arrays());
     }
+
+    public void mapFunction()
+    {
+        String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new MapFunction());
+    }
     public static void main(String[] args)
     {
         Main main = new Main();
         main.arrays();
+        //main.mapFunction();
     }
 } 
