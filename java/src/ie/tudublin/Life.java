@@ -149,22 +149,54 @@ public class Life extends PApplet {
     
     int mode = 0;
     boolean paused = false;
+    boolean drawing = false;
     public void keyPressed() {
         if (keyCode == ' ')
         {
+            pauseEverything();
         }
-        
         if (keyCode == '1')
         {
+            randomize();
         }
         if (keyCode == '2')
         {
+            clearEverything();
         }
         if (keyCode == '3')
         {
+            drawShapes();
         }
             
     }
+
+    public void pauseEverything(){
+        paused = !paused;
+        // print(paused);     
+        // if(paused){
+        //     frameRate(0);
+        //     //paused = false;
+        // }else {
+        //     frameRate(60);
+        //     //paused = true;
+        // }
+       
+    }
+
+    public void clearEverything(){
+        for(int x=0; x < size; x++)
+        {
+            for(int y=0; y < size; y++)
+            {
+               board[x][y]= false;
+            }
+        }
+    }
+
+    public void drawShapes(){
+        drawing = !drawing;
+    }
+
 
     public void setup() {
         colorMode(RGB);
@@ -179,13 +211,49 @@ public class Life extends PApplet {
 
         cellSize = width / (size);
         
+        //frameRate(1);
         //printBoard(board);        
     }
 
     private void updateBoard()
     {
         // Put code here to apply the rules!!
+        boolean[][] next = new boolean[size][size];
+        for(int x=0; x < size; x++)
+        {
+            for(int y=0; y < size; y++)
+            {
+                int neighbours = countNeighbours(x, y);
+                //If the cell is alive (true) then if the cell has exactly 2 or 3 neighbours it survives (gets set to true), 
+                // otherwise it dies (gets set to false)
+                if(board[x][y]){// y x
+                    if(neighbours == 2 || neighbours == 3){
+                        next[x][y]= true;
+                    }else {
+                        next[x][y]= false;
+                    }
+                }else {
+                     //If the cell is dead (false) then it comes to life if it has exactly 3 neighbours,
+                    //otherwise it stays dead in the next generation.
+                    if(board[x][y]== false && neighbours == 3 ){
+                        next[x][y]= true;
+                    }else {
+                        next[x][y]= false;
+                    }
+                }
+                
+            }
+        }
 
+        //Again - in updateBoard
+        // for(int x=0; x < size; x++)
+        // {
+        //     for(int y=0; y < size; y++)
+        //     {
+        //        countNeighbours(x, y);
+        //        if((board[x][y] )
+        //     }
+        // }
         
         // Swap board and next
         boolean[][] temp = board;
@@ -196,11 +264,31 @@ public class Life extends PApplet {
     public void mouseDragged()
     {
         // This method gets called automatically when the mouse is dragged across the screen
+        // extra
+        if(drawing){
+            // if(mouseX > size)
+            //     return;
+            
+            // if(mouseX < 0)
+            //     return;
+
+            // if(mouseY > size)
+            //     return;
+            
+            // if(mouseY < 0)
+            //     return;
+            //print(mouseX);
+            //print(mouseY);
+
+            next[mouseX][mouseY]= true;
+        }
+          
     }
 
     public void draw() {
         background(0);
-        drawBoard(board);        
-        updateBoard();
+        drawBoard(board); 
+        if(!paused)       
+           updateBoard();
     }
 }
