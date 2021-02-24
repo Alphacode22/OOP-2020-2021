@@ -13,7 +13,8 @@ public class Life extends PApplet {
         {
             for (int j=col-1; j< col+2; j++)
             {
-                if(i != row && j != col){
+                //if(i != row && j != col){
+                if(!(i == row && j == col)){
                     if(getCell(board, i, j)){
                         count ++;
                     } 
