@@ -68,7 +68,8 @@ public class Life extends PApplet {
 
     public void setCell(boolean[][] board, int row, int col, boolean b)
     {
-        if (row >= 0 && row < size -1 && col >= 0 && col < size -1)
+        //if (row >= 0 && row < size -1 && col >= 0 && col < size -1)
+        if (row >= 0 && row < size && col >= 0 && col < size)
         {
             board[row][col] = b;
         }
@@ -76,7 +77,8 @@ public class Life extends PApplet {
 
     public boolean getCell(boolean[][] board, int row, int col)
     {
-        if (row >= 0 && row < size -1 && col >= 0 && col < size -1)
+        //if (row >= 0 && row < size -1 && col >= 0 && col < size -1)
+        if (row >= 0 && row < size && col >= 0 && col < size)
         {
             return board[row][col];
         }
@@ -149,7 +151,7 @@ public class Life extends PApplet {
     
     int mode = 0;
     boolean paused = false;
-    boolean drawing = false;
+    //boolean drawing = false;
     public void keyPressed() {
         if (keyCode == ' ')
         {
@@ -194,7 +196,7 @@ public class Life extends PApplet {
     }
 
     public void drawShapes(){
-        drawing = !drawing;
+        //drawing = !drawing;
     }
 
 
@@ -226,6 +228,7 @@ public class Life extends PApplet {
                 int neighbours = countNeighbours(x, y);
                 //If the cell is alive (true) then if the cell has exactly 2 or 3 neighbours it survives (gets set to true), 
                 // otherwise it dies (gets set to false)
+                //USE GETTER AND SETTERS
                 if(board[x][y]){// y x
                     if(neighbours == 2 || neighbours == 3){
                         next[x][y]= true;
@@ -265,7 +268,7 @@ public class Life extends PApplet {
     {
         // This method gets called automatically when the mouse is dragged across the screen
         // extra
-        if(drawing){
+        //if(drawing){
             // if(mouseX > size)
             //     return;
             
@@ -281,7 +284,7 @@ public class Life extends PApplet {
             //print(mouseY);
 
             next[mouseX][mouseY]= true;
-        }
+        //}
           
     }
 
