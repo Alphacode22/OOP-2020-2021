@@ -204,7 +204,8 @@ public class Life extends PApplet {
 
         cellSize = width / (size);
         
-        //printBoard(board);        
+        //printBoard(board);  
+        frameRate(1);      
     }
 
     private void updateBoard()
