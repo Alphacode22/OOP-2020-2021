@@ -42,10 +42,13 @@ public class Audio1 extends PApplet {
             stroke(c, 255, 255);
             line(i, halfHeight - ab.get(i) * halfHeight, i, halfHeight + ab.get(i) * halfHeight);
             //println(ab.get(i));
+            
+            average += abs(ab.get(i));
         }
+        average /= (float) ab.size();
 
         // Calculate the AVERAGE amplitude
 
-        ellipse(width / 2, 100, average * 100, average * 100);
+        ellipse(width / 2, 100, average * 500, average * 500);
     }   
 }
