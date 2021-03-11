@@ -14,6 +14,7 @@ public class Audio1 extends PApplet {
     AudioBuffer ab; // Samples
 
     float[] lerpedBuffer;
+    float[] buffer;
 
     public void settings() {
         size(512, 512);
@@ -78,8 +79,10 @@ public class Audio1 extends PApplet {
                     float c = map(i, 0, ab.size(), 0, 255);
                     stroke(c, 255, 255);
                     lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.1f);
+              
         
                     line(i, halfHeight - lerpedBuffer[i] * halfHeight * 4, halfHeight + lerpedBuffer[i] * halfHeight * 4, i);
+                   
                 }
 
                 // See the difference lerping makes? It smooths out the jitteryness of average, so the visual looks smoother
@@ -95,24 +98,101 @@ public class Audio1 extends PApplet {
             }   
             case 1:
             {
+                 // Iterate over all the elements in the audio buffer
+                 for (int i = 0; i < ab.size(); i++) {
+
+                    float c = map(i, 0, ab.size(), 0, 255);
+                    stroke(c, 255, 255);
+                
+                    line(i, halfHeight - ab.get(i) * halfHeight, i, halfHeight +  ab.get(i) * halfHeight);
+                    
+                }
+                y += random(-10, 10);
+                lerpedY = lerp(lerpedY, y, 0.1f);
                 break;
             }
             case 2:
             {
+                // Iterate over all the elements in the audio buffer
+                for (int i = 0; i < ab.size(); i++) {
+ 
+                    float c = map(i, 0, ab.size(), 0, 255);
+                    stroke(c, 255, 255);
+            
+                    line(i,  ab.get(i) * halfHeight, i,  ab.get(i) * halfHeight);
+                    line(ab.get(i) * halfHeight, i,  ab.get(i) * halfHeight,i);
+
+                    //A (x, y)                         B(X,Y)
+                    line(i,  ab.get(i) * halfHeight, i,  ab.get(i) * halfHeight);
+                    line(ab.get(i) * halfHeight, i,  ab.get(i) * halfHeight,i);
+                }
+                y += random(-10, 10);
+                lerpedY = lerp(lerpedY, y, 0.1f);
                 break;
             }
             case 3:
             {
+                 // Iterate over all the elements in the audio buffer
+                 for (int i = 0; i < ab.size(); i++) {
+
+                    float c = map(i, 0, ab.size(), 0, 255);
+                    stroke(c, 255, 255);
+                    lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.1f);
+              
+        
+                    line(i, halfHeight - lerpedBuffer[i] * halfHeight * 4, halfHeight + lerpedBuffer[i] * halfHeight * 4, i);
+                   
+                }
+
+                // See the difference lerping makes? It smooths out the jitteryness of average, so the visual looks smoother
+                ellipse(width / 2, 100, 50 + (lerpedAverage * 500), 50 + (lerpedAverage * 500));
+        
+                // This is another example of how lerping works
+                y += random(-10, 10);
+                lerpedY = lerp(lerpedY, y, 0.1f);
                 break;
             }
             case 4:
             {
+                //square
                 break;
             }
             case 5:
             {
                 // ??
+                // Iterate over all the elements in the audio buffer
+                  for (int i = 0; i < ab.size(); i++) {
+ 
+                    float c = map(i, 0, ab.size(), 0, 255);
+                    stroke(c, 255, 255);
+                
+                    //line(i, halfHeight - ab.get(i) * halfHeight, i, halfHeight +  ab.get(i) * halfHeight);
+                    line(i,  ab.get(i) * halfHeight, i,  ab.get(i) * halfHeight);
+                    
+                }
+                y += random(-10, 10);
+                lerpedY = lerp(lerpedY, y, 0.1f);
                 break;
+            }
+            case 6:
+            {
+                
+                //  // Iterate over all the elements in the audio buffer
+                //  for (int i = 0; i < ab.size(); i++) {
+ 
+                //     float c = map(i, 0, ab.size(), 0, 255);
+                //     stroke(c, 255, 255);
+                
+                //     //line(i, halfHeight - ab.get(i) * halfHeight, i, halfHeight +  ab.get(i) * halfHeight);
+                //     line(i,  ab.get(i) * halfHeight, i,  ab.get(i) * halfHeight);
+                //     line(ab.get(i) * halfHeight, i,  ab.get(i) * halfHeight,i);
+
+                //    // line(ab.size()-i,  ab.get(i) * halfHeight, i,  ab.get(i) * halfHeight);
+                //     //line(ab.get(i) * halfHeight, ab.size()-1,  ab.get(i) * halfHeight,i);
+                // }
+                // y += random(-10, 10);
+                // lerpedY = lerp(lerpedY, y, 0.1f);
+                // break;
             }
         }        
     }
