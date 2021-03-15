@@ -27,10 +27,10 @@ public class Audio1 extends PApplet {
 
     public void setup() {
         minim = new Minim(this);
-        ai = minim.getLineIn(Minim.MONO, width, 44100, 16);
-        //ap = minim.loadFile("heroplanet.mp3", width);
-        //ab = ap.mix; // Connect the buffer to the mp3 file
-        ab = ai.mix; 
+       // ai = minim.getLineIn(Minim.MONO, width, 44100, 16);
+        ap = minim.loadFile("heroplanet.mp3", width);
+        ab = ap.mix; // Connect the buffer to the mp3 file
+        //ab = ai.mix; 
         colorMode(HSB);
         lerpedBuffer = new float[width];
 
@@ -139,12 +139,14 @@ public class Audio1 extends PApplet {
                 strokeWeight(2);
                 stroke(255);
                 float lastX = width / 2, lastY = height / 2;
+                float c = 255 / (float) numPoints;
                 for(int i = 0 ; i < 1000 ; i ++)
                 {
                     float theta = i * thetaInc;
                     float x = width / 2 + sin(theta) * r;
                     float y = height / 2 - cos(theta) * r;
                     r += 0.3f;
+                    fill(c * i, 255, 255);
                     line(lastX, lastY, x, y);
                     lastX = x;
                     lastY = y;
