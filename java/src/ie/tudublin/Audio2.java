@@ -20,7 +20,7 @@ public class Audio2 extends PApplet {
 
     void calculateFrequencyBands() {
         for (int i = 0; i < bands.length; i++) {
-          int start = (int) pow(2, i) - 1;
+          int start = (int) pow(2, i) - 1;//why -1?
           int w = (int) pow(2, i);
           int end = start + w;
           float average = 0;
@@ -29,7 +29,7 @@ public class Audio2 extends PApplet {
           }
           average /= (float) w;
           bands[i] = average * 5;
-          smoothedBands[i] = lerp(smoothedBands[i], bands[i], 0.05f);
+          smoothedBands[i] = lerp(smoothedBands[i], bands[i], 0.05f);//bands
         }
       }
 
@@ -75,9 +75,12 @@ public class Audio2 extends PApplet {
         colorMode(HSB);
 
         minim = new Minim(this);
-        ap = minim.loadFile("scale.wav", width);
+        // ap = minim.loadFile("scale.wav", width);
+        ap = minim.loadFile("heroplanet.mp3", width);
+        //Temporary
         ai = minim.getLineIn(Minim.MONO, width, 44100, 16); 
         ab = ap.mix;
+        ap.setVolume(0);
 
         fft = new FFT(width, 44100);
 
