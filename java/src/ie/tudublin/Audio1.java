@@ -16,8 +16,8 @@ public class Audio1 extends PApplet {
     float[] lerpedBuffer;
 
     public void settings() {
-        size(512, 512);
-        // fullScreen(P3D, SPAN); // Try this for full screen multiple monitor support :-) Be careful of exceptions!
+        //size(1000, 1000, P3D);
+        fullScreen(P3D, SPAN); // Try this for full screen multiple monitor support :-) Be careful of exceptions!
     }
 
     float y = 200;
@@ -37,7 +37,7 @@ public class Audio1 extends PApplet {
     }
 
     public void keyPressed() {
-        if (keyCode >= '0' && keyCode <= '5') {
+        if (keyCode >= '0' && keyCode <= '6') {
             which = keyCode - '0';
         }
         if (keyCode == ' ') {
@@ -48,9 +48,16 @@ public class Audio1 extends PApplet {
                 ap.play();
             }
         }
+        if (keyCode == UP)
+        {
+            twoCubes = ! twoCubes;
+        }
     }
 
     float lerpedAverage = 0;
+    private float angle = 0;
+
+    private boolean twoCubes = false;
 
     public void draw() {
         background(0);
@@ -117,7 +124,7 @@ public class Audio1 extends PApplet {
                 noFill();
                 // See the difference lerping makes? It smooths out the jitteryness of average, so the visual looks smoother
                 //ellipse(width / 4, 100, 50 + average * 500, 50 + average * 500);
-                ellipse(width / 2, 100, 50 + (lerpedAverage * 500), 50 + (lerpedAverage * 500));                
+                ellipse(width / 2, height / 2, 50 + (lerpedAverage * 500), 50 + (lerpedAverage * 500));                
                 break;
             }
             case 4:
@@ -133,26 +140,66 @@ public class Audio1 extends PApplet {
             }
             case 5:
             {
-                float r = 0.1f;
-                int numPoints = 20;
+                float r = 1f;
+                int numPoints = 3;
                 float thetaInc = TWO_PI / (float) numPoints;
-                strokeWeight(2);
-                stroke(255);
+                strokeWeight(2);                
                 float lastX = width / 2, lastY = height / 2;
                 float c = 255 / (float) numPoints;
                 for(int i = 0 ; i < 1000 ; i ++)
                 {
-                    float theta = i * thetaInc;
+                    float c = map(i, 0, 300, 0, 255) % 255.0f;
+                    stroke(c, 255, 255, 100);
+                    float theta = i * (thetaInc + lerpedAverage * 5);
                     float x = width / 2 + sin(theta) * r;
                     float y = height / 2 - cos(theta) * r;
+<<<<<<< HEAD
                     r += 0.3f;
                     fill(c * i, 255, 255);
+=======
+                    r += 0.5f + lerpedAverage;
+>>>>>>> 49e5315cb8ebead5af789c521591440f64b95999
                     line(lastX, lastY, x, y);
                     lastX = x;
                     lastY = y;
                 }
                 // ??
                 break;
+            }
+            case 6:
+            {
+                lights();
+                strokeWeight(2);
+                float c = map(lerpedAverage, 0, 1, 0, 255);
+                stroke(c, 255, 255);
+                noFill();
+                //fill(100, 255, 255);
+                angle += 0.01f;
+                float s = 100 + (100 * lerpedAverage * 10);
+                
+                if (! twoCubes)
+                {
+                    translate(width / 2, height / 2, 0);
+                    rotateY(angle);
+                    rotateX(angle);
+                    box(s);
+                }
+                else
+                {
+                    pushMatrix();
+                    translate(width / 4, height / 2, 0);
+                    rotateY(angle);
+                    rotateX(angle);
+                    box(s);
+                    popMatrix();
+
+                    pushMatrix();
+                    translate(width * 0.75f, height / 2, 0);
+                    rotateY(angle);
+                    rotateX(angle);
+                    box(s);
+                    popMatrix();
+                }
             }
         }        
     }
