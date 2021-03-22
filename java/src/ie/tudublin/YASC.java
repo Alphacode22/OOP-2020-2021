@@ -11,7 +11,8 @@ public class YASC extends PApplet {
 
     void drawPlayer(float x, float y)
     {
-
+        //Write 
+        //line()
     }
 
     void movePlayer()

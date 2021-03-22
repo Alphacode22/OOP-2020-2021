@@ -153,12 +153,9 @@ public class Audio1 extends PApplet {
                     float theta = i * (thetaInc + lerpedAverage * 5);
                     float x = width / 2 + sin(theta) * r;
                     float y = height / 2 - cos(theta) * r;
-<<<<<<< HEAD
-                    r += 0.3f;
-                    fill(c * i, 255, 255);
-=======
+                   // r += 0.3f;
+                    //fill(c * i, 255, 255);
                     r += 0.5f + lerpedAverage;
->>>>>>> 49e5315cb8ebead5af789c521591440f64b95999
                     line(lastX, lastY, x, y);
                     lastX = x;
                     lastY = y;
