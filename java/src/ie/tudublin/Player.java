@@ -36,7 +36,6 @@ public class Player {
     {
         dx = PApplet.sin(rotation);
         dy =  - PApplet.cos(rotation);
-        
         if (yasc.checkKey(PApplet.UP))
         {
             x += dx;
