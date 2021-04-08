@@ -29,7 +29,7 @@ public class Audio1 extends PApplet {
     public void setup() {
         minim = new Minim(this);
         ai = minim.getLineIn(Minim.MONO, width, 44100, 16);
-        ap = minim.loadFile("heroplanet.mp3", width);
+        ap = minim.loadFile("Disfigure.mp3", width);
         //ab = ai.mix; // Connect the buffer to the mic
         ab = ap.mix; // Connect the buffer to the mp3 file
         colorMode(HSB);
@@ -111,6 +111,7 @@ public class Audio1 extends PApplet {
                 lerpedY = lerp(lerpedY, y, 0.1f);
                 break;
             }
+            //Cool lines
             case 2:
             {
                 // Iterate over all the elements in the audio buffer
