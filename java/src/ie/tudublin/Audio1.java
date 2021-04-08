@@ -111,7 +111,7 @@ public class Audio1 extends PApplet {
                 lerpedY = lerp(lerpedY, y, 0.1f);
                 break;
             }
-            //Cool lines
+            //Cool Draw
             case 2:
             {
                 // Iterate over all the elements in the audio buffer
