@@ -83,7 +83,7 @@ public class Audio2 extends PApplet {
 
         bands = new float[(int) log2(width)];
         smoothedBands = new float[bands.length];
-
+        
     }
 
     public void keyPressed() {
