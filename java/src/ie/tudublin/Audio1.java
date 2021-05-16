@@ -153,7 +153,7 @@ public class Audio1 extends PApplet {
                 // lerpedY = lerp(lerpedY, y, 0.1f);
                 break;
             }
-            //Underside down asterisk
+            //Upside down asterisk
             case 4:
             {
                //for (int i = 0; i < ab.size(); i++) {
